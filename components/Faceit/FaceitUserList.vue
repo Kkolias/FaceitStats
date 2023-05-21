@@ -31,6 +31,10 @@ export default Vue.extend({
 
 <style lang="less" scoped>
 .component-FaceitUserList {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 300px;
   ul {
     max-height: 60vh;
     overflow-y: auto;

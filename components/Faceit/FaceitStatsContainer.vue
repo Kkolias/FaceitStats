@@ -2,7 +2,11 @@
   <div class="component-FaceitStatsSummary">
     <div class="container">
       <FaceitSearchPlayer @selectUser="selectUser" />
-      <FaceitCsgoStats v-if="selectedUserCsgoStats" :stats="selectedUserCsgoStats" />
+
+      <div>
+        <FaceitCsgoStats v-if="selectedUserCsgoStats" :stats="selectedUserCsgoStats" />
+        <FaceitCsgoRankedSegments v-if="selectedUserCsgoStats" :segments="selectedUserCsgoStats.segments"/>
+      </div>
     </div>
   </div>
 </template>
@@ -52,7 +56,7 @@ export default {
   margin: auto;
 
   .container {
-    display: flex;
+    // display: flex;
   }
 }
 </style>

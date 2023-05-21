@@ -1,22 +1,32 @@
 <template>
   <div class="component-SearchPlayer">
     <div class="input-wrapper">
-      <input v-model="searchTerm" placeholder="Search"/>
-      <FaceitUserList :userList="userList" @selectUser="selectUser"/>
+      <input v-model="searchTerm" placeholder="Search" />
+      <FaceitUserList
+        class="user-list"
+        v-if="showUserList"
+        :userList="userList"
+        @selectUser="selectUser"
+      />
     </div>
     <button @click="searchPlayer()">Etsi pelaaja</button>
   </div>
 </template>
 
 <script lang="ts">
-import faceitApi  from '~/utils/faceit-api';
+import faceitApi from '~/utils/faceit-api'
 
 export default {
   data: () => ({
     searchTerm: '',
-    userList: []
+    userList: [],
+
+    showUserList: false,
   }),
   methods: {
+    test() {
+      console.log('halo')
+    },
     async searchPlayer() {
       const r = await faceitApi.searchFaceitPlayer(this.searchTerm)
       console.log(r)
@@ -24,11 +34,15 @@ export default {
     },
     setUserList(list) {
       this.userList = list.items
+      this.setShowUserList(true)
+    },
+    setShowUserList(value: boolean) {
+      this.showUserList = value
     },
     selectUser(user) {
-      this.$emit("selectUser", user)
-    }
-    
+      this.$emit('selectUser', user)
+      this.setShowUserList(false)
+    },
   },
 }
 </script>
@@ -42,6 +56,12 @@ export default {
 
   input {
     width: 300px;
+  }
+
+  
+
+  .input-wrapper {
+    position: relative;
   }
 }
 </style>
