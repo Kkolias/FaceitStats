@@ -1,0 +1,51 @@
+:root {
+  --background-dark: #161616;
+  --background-light: #1f1f1f;
+  --background-light-2: #303030;
+  --orange-1: #ff5500;
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: content-box;
+    background: var(--background-dark);
+    color: #fff;
+
+    input {
+      // border: 1px solid #a3744e;
+      border: none;
+      height: 30px;
+      border-radius: 5px;
+      font-size: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background-light-2);
+      color: #fff;
+      padding: 0;
+
+      &:focus {
+        // border: 1px solid #a3744e;
+      }
+    }
+
+    button {
+      background-color: var(--background-light-2);
+      padding: 0 10px;
+      color: #fff;
+      font-size: 18px;
+      height: 32px;
+      border: none;
+      border-radius: 5px;
+
+      &.blank {
+        background-color: transparent;
+        border-width: 0;
+        font-family: inherit;
+        font-size: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        padding: 0;
+      }
+    }
+  }
+}
