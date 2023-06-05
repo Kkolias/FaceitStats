@@ -4,6 +4,10 @@
       <h3>{{ gameName }}</h3>
       <div class="stats-top">
         <div class="stat-wrapper">
+          <p class="bold">Elo</p>
+          <p>{{ csgoElo }}</p>
+        </div>
+        <div class="stat-wrapper">
           <p class="bold">Longest Win Streak</p>
           <p>{{ longestWinStreak }}</p>
         </div>
@@ -60,6 +64,7 @@ import Vue from 'vue'
 export default Vue.extend({
   props: {
     stats: { type: Object, default: () => {} },
+    csgoElo: { type: Number, default: 0}
   },
   computed: {
     gameName() {

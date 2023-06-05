@@ -4,7 +4,7 @@
       <FaceitSearchPlayer @selectUser="selectUser" />
 
       <div>
-        <FaceitCsgoStats v-if="selectedUserCsgoStats" :stats="selectedUserCsgoStats" />
+        <FaceitCsgoStats v-if="selectedUserCsgoStats" :stats="selectedUserCsgoStats" :csgoElo="csgoElo"/>
         <FaceitCsgoRankedSegments v-if="selectedUserCsgoStats" :segments="selectedUserCsgoStats.segments"/>
       </div>
     </div>
@@ -19,6 +19,7 @@ export default {
     selectedUserId: '',
     selectedUser: null,
     selectedUserCsgoStats: null,
+    csgoElo: 0
   }),
   watch: {
     selectedUserId() {
@@ -32,7 +33,8 @@ export default {
     },
     async fetchUserById() {
       const r = await faceitApi.fetchPlayerById(this.selectedUserId)
-      console.log(r)
+      // console.log(r)
+      this.setCsgoElo(r)
       this.setSelectedUser(r)
     },
     async fetchUserCsgoStats() {
@@ -46,6 +48,9 @@ export default {
     setSelectedUserCsgoStats(stats) {
       this.selectedUserCsgoStats = stats
     },
+    setCsgoElo(user): void {
+      this.csgoElo = user?.games?.csgo?.faceit_elo || 0
+    }
   },
 }
 </script>
